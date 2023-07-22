@@ -15,24 +15,19 @@
 </template>
 
 <script>
-// import axios from 'axios'
 
 export default {
+    props: {
+        username: {
+        type: String,
+        default: 'infoForm',
+        },
+    },
     data: function(){
         return {
             list: []
         }
     },
-    // mounted: function(){
-    //     axios.get('/users/findOne', this.form)
-    //         .then((res) => {
-    //             console.log(res.data)
-    //             this.form = res.data
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }
 }
 </script>
 

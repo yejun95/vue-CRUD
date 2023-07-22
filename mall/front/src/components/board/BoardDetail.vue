@@ -1,9 +1,9 @@
 <template>
     <div class="writeBox">
-        <form v-for="item in list" :key="item.idx">
-            <input type="text" class="tt" value="아이디" readonly><br>
-            <input type="text" class="tt" placeholder="제목"><br>
-            <textarea placeholder="내용을 기입해주세요" class="content"></textarea>
+        <form>
+            <input type="text" class="tt" readonly v-model="user_id"><br>
+            <input type="text" class="tt" placeholder="제목" readonly v-model="title"><br>
+            <textarea placeholder="내용을 기입해주세요" class="content" readonly v-model="content"></textarea>
             <div class="btnn">
                 <button @click="wrtieBtn">등록</button>
                 <button @click="updateBtn">수정</button>
@@ -12,24 +12,37 @@
             </div>
         </form>
     </div>
+    {{username}}
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
+    props: {
+        username: {
+        type: String,
+        default: 'infoForm',
+        },
+    },
     data: function(){
         return {
-            list: []
+            user_id: '',
+            title: '',
+            content: ''
+            
         }
-    // },
-    // mounted: function(){
-    //     console.log(this.$router.path)
-    //     axios.get(this.$router.path)
-    //         .then((res) => {
-    //             this.idx = res.data
-    //             console.log(res)
-    //         })
+    },
+    mounted: function(){
+        axios.get('board/detail/' + this.$route.params.idx)
+            .then((res) => {
+                this.user_id = res.data[0].user_id;
+                this.title = res.data[0].title;
+                this.content = res.data[0].content;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 }
 </script>
@@ -66,5 +79,10 @@ export default {
     .btnn > button {
         width: 70px;
         margin-left: 5px;
+    }
+
+    input[readonly]{
+        background: #e2e2e2;
+        padding: 15px;
     }
 </style>

@@ -4,7 +4,7 @@
             <div class="head">LOGIN</div>
             <input type="text" placeholder="아이디" v-model="user.id"><br>
             <input type="password" placeholder="비밀번호" v-model="user.pw"><br>
-            <button type="submit">로그인</button><br>
+            <button type="submit" @click="clickdd">로그인</button><br>
             <router-link to="/register"><button>회원가입</button></router-link>
         </form>
     </div>
@@ -51,7 +51,7 @@ export default {
                console.log(err);
                console.log("실패")
             })
-      }
+      },
    }
 }
 </script>

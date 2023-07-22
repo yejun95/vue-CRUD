@@ -10,9 +10,12 @@ router.get('/list', function(req, res, next) {
 })
 
 // 게시판 상세 정보 조회
-router.get('/detail', function(req, res, next) {
-    const idx = req.body.idx;
-    db.query('select * from board where idx = ?', [idx])
+router.get('/detail/:idx', function(req, res, next) {
+    console.log(req.params.idx);
+    const idx = req.params.idx
+    db.query('select * from board where idx = ?', [idx], (err,rows,file) => {
+        res.send(rows);
+    });
 })
 
 

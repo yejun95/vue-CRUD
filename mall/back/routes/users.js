@@ -14,7 +14,6 @@ router.post('/login', (req, res) => {
             if (result[0]['count(*)'] > 0) { // result 0번쨰 인덱스에 위치한 count(*)의 값을 비교 -> 1이면 if문 진입
                 req.session.loggedIn = true; // loggedIn이라는 변수로 세션을 생성
                 req.session.username = id; // 가져온 id에 세션을 부여
-                console.log(req.session.loggedIn)
                 res.send('1');
             } else {
                 res.send('0');
@@ -55,6 +54,7 @@ router.post('/register', (req, res) => {
             console.log('Database error');
         } else {
             console.log('회원가입 성공');
+            res.send('회원가입 성공 ')
         }
     });
 });

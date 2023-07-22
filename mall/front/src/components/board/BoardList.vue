@@ -27,7 +27,6 @@ export default {
     data: function(){
         return {
             list: [],
-            idx: []
         }
     }, 
     mounted(){

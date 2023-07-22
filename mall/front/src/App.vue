@@ -30,8 +30,11 @@ export default {
   },
   data: function(){
     return {
-      users: []
+      login: this.$route.params.id
     }
+  },
+  mounted: function(){
+    
   },
 }
 </script>

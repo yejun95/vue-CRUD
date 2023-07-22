@@ -12,7 +12,6 @@
       </div>
     </div>
   </header>
-  
 </template>
 
 <script>
@@ -46,9 +45,8 @@ export default {
           alert('로그아웃 완료')
           this.$router.go(0);
         })
-    }
-  }
-  
+    },
+  },
 }
 </script>
 

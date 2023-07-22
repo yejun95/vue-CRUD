@@ -5,23 +5,28 @@ import UserRegister from "../components/UserRegister"
 import BoardDetail from "../components/board/BoardDetail"
 import BoardWrite from "../components/board/BoardWrite"
 
-const routes = [{
-    path: '/login',
-    component: LoginPage
-},{
-    path: '/board',
-    component: BoardList
-},{
-    path: '/write',
-    component: BoardWrite
-},{
-    path: '/detail/:idx',
-    name: 'detail',
-    component: BoardDetail
-},{
-    path: '/register',
-    component: UserRegister
-}
+const routes = [
+    {
+        path: '/login',
+        component: LoginPage
+    },
+    {
+        path: '/board',
+        component: BoardList
+    },
+    {
+        path: '/write',
+        component: BoardWrite
+    },
+    {
+        path: '/detail/:idx',
+        name: 'detail', // name 확인하기
+        component: BoardDetail
+    },
+    {
+        path: '/register',
+        component: UserRegister
+    }
 ]
 
 const router = createRouter({
