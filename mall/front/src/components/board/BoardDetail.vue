@@ -1,6 +1,7 @@
 <template>
     <div class="writeBox">
-        <form>
+        <BoardBox :param="param"/>
+        <!-- <form>
             <input type="text" class="tt" readonly v-model="user_id"><br>
             <input type="text" class="tt" placeholder="제목" readonly v-model="title"><br>
             <textarea placeholder="내용을 기입해주세요" class="content" readonly v-model="content"></textarea>
@@ -10,43 +11,39 @@
                 <button @click="deleteBtn">삭제</button>
                 <button @click="this.$router.back()">뒤로가기</button>
             </div>
-        </form>
+        </form> -->
+        {{ writeBtn }}
     </div>
-    {{username}}
 </template>
 
 <script>
-import axios from 'axios'
-
+import BoardBox from "@/components/board/BoardBox.vue"
+// import axios from 'axios'
 export default {
-    props: {
-        username: {
-        type: String,
-        default: 'infoForm',
-        },
-    },
+    components: {
+    BoardBox, // BoardBox 컴포넌트 등록
+  },
+
+    props: ['writeBtn'],
+
     data: function(){
         return {
-            user_id: '',
-            title: '',
-            content: ''
-            
+            param: this.$route.params.idx
         }
     },
-    mounted: function(){
-        axios.get('board/detail/' + this.$route.params.idx)
-            .then((res) => {
-                this.user_id = res.data[0].user_id;
-                this.title = res.data[0].title;
-                this.content = res.data[0].content;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
+    // mounted: function(){
+    //     axios.get('board/detail/' + this.$route.params.idx)
+    //         .then((res) => {
+    //             this.user_id = res.data[0].user_id;
+    //             this.title = res.data[0].title;
+    //             this.content = res.data[0].content;
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         })
+    // }
 }
 </script>
-
 <style>
     .tt {
         width: 40%;

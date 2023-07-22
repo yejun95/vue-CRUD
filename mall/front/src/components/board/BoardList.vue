@@ -1,7 +1,7 @@
 <template>
     <div class="board-top">
     <p class="free">자유게시판</p>
-    <router-link to="/write"><button class="writeBtn">글쓰기</button></router-link>
+    <router-link to="/write"><button class="writeBtn" :writeBtn="writeBtn">글쓰기</button></router-link>
     </div>
     <hr class="hr">
     <div>
@@ -27,6 +27,7 @@ export default {
     data: function(){
         return {
             list: [],
+            writeBtn: "유건의"
         }
     }, 
     mounted(){

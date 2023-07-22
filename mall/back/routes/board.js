@@ -18,5 +18,15 @@ router.get('/detail/:idx', function(req, res, next) {
     });
 })
 
+// 게시판 글쓰기
+router.post('/boardWrite', function(req, res){
+    const boardTitle = req.body.boardTitle;
+    const boardContent = req.body.boardContent;
+    const boardId = req.body.boardId;
+    db.query('insert into board (title, content, date, user_id) values (?, ?, now(), ?);', [boardTitle, boardContent, boardId], (err, rows) => {
+        res.send(rows);
+    });
+
+})
 
 module.exports = router
