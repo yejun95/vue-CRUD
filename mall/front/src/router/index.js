@@ -4,11 +4,16 @@ import BoardList from "../components/board/BoardList"
 import UserRegister from "../components/UserRegister"
 import BoardDetail from "../components/board/BoardDetail"
 import BoardWrite from "../components/board/BoardWrite"
+import BoardEdit from "../components/board/BoardEdit"
 
 const routes = [
     {
         path: '/login',
         component: LoginPage
+    },
+    {
+        path: '/register',
+        component: UserRegister
     },
     {
         path: '/board',
@@ -24,9 +29,9 @@ const routes = [
         component: BoardDetail
     },
     {
-        path: '/register',
-        component: UserRegister
-    }
+        path: '/edit/:idx',
+        component: BoardEdit
+    },
 ]
 
 const router = createRouter({

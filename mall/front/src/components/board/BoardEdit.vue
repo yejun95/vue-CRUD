@@ -1,22 +1,21 @@
 <template>
     <div class="writeBox">
-        <BoardBox :username="write"/>
+        <BoardBox :username="update" :param="param" />
     </div>
 </template>
 
 <script>
 import BoardBox from "@/components/board/BoardBox.vue"
-// import axios from 'axios'
 export default {
     components: {
     BoardBox, // BoardBox 컴포넌트 등록
   },
     data: function(){
         return {
-            write: "write"
+            update: 'update',
+            param: this.$route.params.idx
         }
-    }
-   
+    },
 }
 </script>
 <style>
@@ -56,5 +55,9 @@ export default {
     input[readonly]{
         background: #e2e2e2;
         padding: 15px;
+    }
+
+    #app > content > div.left-content > div > form > div > a > button {
+        width: 70px;
     }
 </style>
