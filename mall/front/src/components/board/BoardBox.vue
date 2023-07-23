@@ -1,13 +1,13 @@
 <template>
         <!-- detail 상세정보보기 -->
         <form v-if="username == 'infoForm'">
-            <input type="text" class="tt" v-model="user_id"><br>
-            <input type="text" class="tt" readonly v-model="title"><br>
+            <input type="text" class="tt" readonly v-model="user_id"><br>
+            <input type="text" class="tt" v-model="title"><br>
             <textarea class="content" readonly v-model="content"></textarea>
             <div class="btnn">
                 <router-link :to="'/edit/' + param"><button>수정</button></router-link>
                 <button @click="deleteBtn">삭제</button>
-                <button @click="this.$router.go(-1)">뒤로가기</button>
+                <button @click="this.$router.push('/board')">뒤로가기</button>
             </div>
         </form>
         <!-- insert -->
@@ -16,7 +16,7 @@
             <textarea placeholder="내용을 기입해주세요" class="content" v-model="boardContents.boardContent"></textarea>
             <div class="btnn">  
                 <button @click="writeBtn">등록</button>
-                <button @click="this.$router.go(-1)">뒤로가기</button>
+                <button @click="this.$router.push('/board')">뒤로가기</button>
             </div>
         </form>
         <!-- update -->
@@ -61,7 +61,7 @@ export default {
             },
         }
     },
-    mounted: function(){
+    created: function(){
             // datail 상세정보 가져오기
             if(this.username == "infoForm") {
                 axios.get('board/detail/' + this.param)
