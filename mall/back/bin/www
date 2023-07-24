@@ -18,8 +18,34 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
+// const cors = require('cors');
+// app.use(cors());
 const server = http.createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+      origin: "http://localhost:8080",
+      methods: ["GET", "POST"],
+      allowedHeaders: ["extra-custrom-headeres"],
+      credentials: true
+    },
+      allowEIO3: true  // socket io의 버전이 3.* 버전인데 2.* 버전과도 통신 가능하도록 설정을 잡아주는 부분입
+}); // 해당 서버를 소켓 서버로 설정
+
+// connection event handler
+io.on('connection', function(socket) {
+  console.log('유저 접속 됨 ' + socket);
+  
+  socket.on('chat', function(data) { // 클라이언트로 부터 'chat'이라는 이벤트명을 사용해 메세지를 전달받는다.
+    console.log('전달된 메시지 ' + data.message);
+
+    let rtnMessage = {
+      message: data.message
+    }; 
+
+    // 클라이언트에게 메시지를 전송한다.
+    socket.broadcast.emit('chat', rtnMessage); // broadcast : 자신을 제외한 나머지 클라이언트에게 메시지 전달
+  });
+})
 
 /**
  * Listen on provided port, on all network interfaces.

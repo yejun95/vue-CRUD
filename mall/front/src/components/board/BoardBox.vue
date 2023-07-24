@@ -1,8 +1,10 @@
 <template>
         <!-- detail 상세정보보기 -->
         <form v-if="username == 'infoForm'">
-            <input type="text" class="tt" readonly v-model="user_id"><br>
-            <input type="text" class="tt" v-model="title"><br>
+            <label for="inputId">ID : </label>
+            <input type="text" class="tt" id="inputID" readonly v-model="user_id"><br>
+            <label for="inputTitle">제목 : </label>
+            <input type="text" class="tt" id="inputTitle" v-model="title"><br>
             <textarea class="content" readonly v-model="content"></textarea>
             <div class="btnn">
                 <router-link :to="'/edit/' + param"><button>수정</button></router-link>
@@ -12,7 +14,8 @@
         </form>
         <!-- insert -->
         <form v-if="username == 'write'">
-            <input type="text" class="tt" placeholder="제목" v-model="boardContents.boardTitle"><br>
+            <label for="inputId">제목 : </label>
+            <input type="text" class="tt" id="inputID" placeholder="제목" v-model="boardContents.boardTitle"><br>
             <textarea placeholder="내용을 기입해주세요" class="content" v-model="boardContents.boardContent"></textarea>
             <div class="btnn">  
                 <button @click="writeBtn">등록</button>
@@ -21,8 +24,10 @@
         </form>
         <!-- update -->
         <form v-if="username == 'update'">
-            <input type="text" class="tt" readonly v-model="user_id"><br>
-            <input type="text" class="tt" v-model="title"><br>
+            <label for="inputID">ID : </label>
+            <input type="text" class="tt" id="inputID" readonly v-model="user_id"><br>
+            <label for="inputTItle">제목 : </label>
+            <input type="text" class="tt" id="inputTitle" v-model="title"><br>
             <textarea  class="content" v-model="content"></textarea>
             <div class="btnn">
                 <button @click="updateBtn">수정완료</button>
@@ -35,7 +40,7 @@
 import axios from 'axios';
 
 export default {
-    // detail 요청일 때는 infoForm 조건 실행
+    // detail 요청일 때는 username을 "infoForm"으로 조건 실행
     // write 요청일 때는 username을 "write"로 조건 실행
     props: {
         username: {
@@ -57,7 +62,7 @@ export default {
             boardContents: {
                 boardTitle: '',
                 boardContent: '',
-                boardId: 'rjsdml'
+                boardId: 'rjsdml' // ID를 고정값으로 등록하는중, 세션 등록 필요
             },
         }
     },
@@ -105,7 +110,7 @@ export default {
         },
         // 게시판 글 지우기
         deleteBtn: function(){
-            axios.delete(`/board/delete/${this.$route.params.idx}`)
+            axios.delete(`/board/delete/${this.param}`)
                 .then(() => {
                     alert("삭제가 완료되었습니다.");
                     this.$router.push("/board");

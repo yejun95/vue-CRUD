@@ -21,7 +21,6 @@ import ChattingRoom from './components/ChattingRoom.vue'
 
 
 export default {
-  name: "app",
   components: {
     HeaderPage,
     FooterPage,
@@ -30,11 +29,7 @@ export default {
   },
   data: function(){
     return {
-      login: this.$route.params.id
     }
-  },
-  mounted: function(){
-    
   },
 }
 </script>
@@ -92,7 +87,7 @@ export default {
  .right-content {
   width: 28%;
   height: 500px;
-  background: black;
+  /* background: black; */
  }
 
  .content-in {

@@ -24,7 +24,7 @@ export default {
     }
 
     .writeBox {
-        width: 1000px;
+        width: 920px;
         height: 450px;
         border: 1px solid black;
         padding: 40px;
@@ -35,7 +35,7 @@ export default {
     }
     
     .content {
-        width: 917px;
+        width: 838px;
         height: 220px;
         padding: 20px;
         resize: none;

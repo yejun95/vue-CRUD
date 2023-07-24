@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router' // vue3 셋팅법
 import LoginPage from "../components/LoginPage"
 import BoardList from "../components/board/BoardList"
 import UserRegister from "../components/UserRegister"

@@ -1,12 +1,20 @@
-const createError = require('http-errors');
-const express = require('express');
-const session = require('express-session')
-const Memorystore = require('memorystore')(session)
-const cookieParser = require('cookie-parser');
-const path = require('path');
-const logger = require('morgan');
-const mysql = require('./config/database')
-const app = express();
+const createError = require('http-errors'); // error가 났을 때 내가 원하는 페이지를 만듬.
+const express = require('express'); // 익스프레스 모듈 생성
+const session = require('express-session'); // 익스프레스-세션 모듈 생성
+const Memorystore = require('memorystore')(session); // 세션을 담을 저장소
+const path = require('path'); // 경로 지정시 사용하는 모듈
+const logger = require('morgan'); // 콘솔에 서버 관련 정보가 도출 ex) 404, 200 에러 등
+const mysql = require('./config/database'); // mysql 연결을 하는 폴더 조회
+const app = express(); // 익스프레스 사용
+
+// app.all('/*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+// })
+
+// app.get('/', function(req, res) {
+//   res.sendFile("Hello Chating App Server");
+// })
 
 mysql.connect();
 // router
@@ -35,21 +43,22 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/board', boardRouter);
 
-// catch 404 and forward to error handler
+// 등록되지 않은 path로 요청이 왔으면 404페이지를 만들어야함.
+// http-errors 모듈로 error 객체 생성 후 에러 처리 핸들러로 넘김
 app.use(function(req, res, next) {
+  // error 생성 후 next
   next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  // error 템플릿에 전달할 데이터 설정
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
