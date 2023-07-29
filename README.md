@@ -1,7 +1,7 @@
 ## 기술 스택
-Back-end : Node.js
-Front-end : Vue 3 (문법은 2로 진행)
-Database : Mysql
+- Back-end : Node.js
+- Front-end : Vue 3 (문법은 2로 진행)
+- Database : Mysql
 
 ## main view
 - 상품 목록 로그인 버튼, 회원가입 버튼이 한 화면에 존재한다.
