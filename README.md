@@ -1,3 +1,5 @@
+기술 연습을 위해 게시판 기능을 가진 간단한 웹사이트를 vue + node로 제작
+
 ## 기술 스택
 - Back-end : Node.js
 - Front-end : Vue 3 (문법은 2로 진행)
